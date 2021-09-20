@@ -1,0 +1,38 @@
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+.center3 {
+  /*margin: 0;*/
+  position: absolute;
+  top: 50%;
+  width: 75%;
+  left: 60%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.center4 {
+  /*margin: 0;*/
+  position: absolute;
+  top: 50%;
+  width: 75%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.biglist {
+  font-size: 150%;
+}
+
+
+.watch-out {
+  font-size: 50%;
+}
