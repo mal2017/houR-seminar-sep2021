@@ -30,8 +30,11 @@ library(emo)
 # About me
 
 - New Hampshire native
+
 - 3rd year MMG grad student
+
 - Ellison Lab
+
 - *Drosophila* Host/Transposon interplay
 
 ]
@@ -42,36 +45,13 @@ library(emo)
 knitr::include_graphics("pics/peaches.jpg")
 ```
 
-** Code review **
-
-
-]
-
----
-
-# Non-exhaustive list of things I hope to get out of the weekly meeting
-
-* tools
-* workflows
-* time-savers
-* tips and tricks
-
----
-
-.center2[
-
-```{r, out.height="250px", out.width="450px"}
-knitr::include_graphics("pics/pg-bioc.png")
-
-knitr::include_graphics("pics/pg-biorxiv.png")
-```
-
-
 ]
 
 ---
 
 # Why I like R
+
+--
 
 - process and import data
 
@@ -99,6 +79,7 @@ knitr::include_graphics("pics/pg-biorxiv.png")
   - access NASA's expoplanet data
   - generative art
   - NLP
+  - genomics (`bioconductor`)
   - ...
 
 
@@ -143,33 +124,14 @@ knitr::include_graphics("pics/pg-biorxiv.png")
 
 ]
 
+
 ---
 
-# Other options
+# Have you: 
 
-.middle[
+.center4[
 
-> Currently existing R packages like patchwork, cowplot, gridExtra and Sushi (which was developed by
-our group) can be used to arrange multi-panel plots.
-However, these layout packages use relative positioning
-to place plots, giving users little control over precise sizing and arrangement.
-
-> Figures generated with these tools
-often need finishing in graphic design software such as
-Adobe Illustrator, Inkscape, PowerPoint, and Keynote. In addition to the cost of purchasing proprietary
-graphic design software and the steep learning curve
-often associated with their use, generating multi-panel
-figures with these software requires non programmatic,
-manual user interactions, a labor intensive process that
-decreases reproducibility.
-
-]
-
-.footnote[
-
-Plotgardener: Cultivating precise multi-panel figures in R
-Nicole E Kramer, Eric S Davis, Craig D Wenger, Erika M Deoudes, Sarah M Parker, Michael I Love, Douglas H Phanstiel
-bioRxiv 2021.09.08.459338; doi: https://doi.org/10.1101/2021.09.08.459338
+spent days perfecting a figure panel in gui-based software, but had to remake it when you tweaked upstream analysis?
 
 ]
 
@@ -272,6 +234,7 @@ grid.arrange(gt_sample_table,
              g_top_2_genes,
              ncol=3)
 ```
+
 ---
 
 ## Summary: difficulties with existing packages
@@ -283,6 +246,49 @@ grid.arrange(gt_sample_table,
   * control of alignment of text versus plot of a figure
 * spurious whitespace appears
 * text crowding
+
+---
+
+.center2[
+
+```{r, out.height="250px", out.width="450px"}
+knitr::include_graphics("pics/pg-bioc.png")
+
+knitr::include_graphics("pics/pg-biorxiv.png")
+```
+
+]
+
+---
+
+# Other options
+
+.middle[
+
+> Currently existing R packages like patchwork, cowplot, gridExtra and Sushi (which was developed by
+our group) can be used to arrange multi-panel plots.
+However, these layout packages use relative positioning
+to place plots, giving users little control over precise sizing and arrangement.
+
+> Figures generated with these tools
+often need finishing in graphic design software such as
+Adobe Illustrator, Inkscape, PowerPoint, and Keynote. In addition to the cost of purchasing proprietary
+graphic design software and the steep learning curve
+often associated with their use, generating multi-panel
+figures with these software requires non programmatic,
+manual user interactions, a labor intensive process that
+decreases reproducibility.
+
+]
+
+.footnote[
+
+Plotgardener: Cultivating precise multi-panel figures in R
+Nicole E Kramer, Eric S Davis, Craig D Wenger, Erika M Deoudes, Sarah M Parker, Michael I Love, Douglas H Phanstiel
+bioRxiv 2021.09.08.459338; doi: https://doi.org/10.1101/2021.09.08.459338
+
+]
+
 
 ---
 
@@ -350,11 +356,9 @@ dev.off()
 
 ---
 
-```{r create-plot-letter, echo=T, message=F, fig.width=8.5, fig.height=11, fig.align="center", out.height="400px",cache=F}
+```{r create-plot-letter, echo=T, message=F, fig.width=8.5, fig.height=11, fig.align="center", out.height="400px",cache=F, include=F}
 pageCreate(width = 8.5, height = 11, default.units = "inches")
 ```
-
----
 
 .pull-left.middle.watch-out[
 
@@ -491,7 +495,7 @@ data("IMR90_ChIP_H3K27ac_signal")
 
 .pull-right.middle[
 
-```{r create-plot-vign, echo=F, message=F,fig.align="center",out.width="900px",cache=F}
+```{r create-plot-vign, echo=F, message=F,fig.align="center",out.width="900px",cache=F, warning=F}
 pageCreate(width = 4, height = 6.5, default.units = "inches")
 
 ## Set signal track data ranges
@@ -529,17 +533,47 @@ annoGenomeLabel(plot = genes_imr, params = params_d,
                    y = 6, just = c("right", "top"))
 ```
 
+```{r, cache=F, include=F}
+dev.off()
+```
+
 
 ]
 
+---
+
+# Takeaway
+
+`plotgardener`:
+
+* facilitates 2+ figure panels
+* manual control over figure coordinates
+* seamless inclusion of varied object types
+  - `grob`
+  - `ggplot2`
+  - base R
+  - anything else you can convert to `ggplot2`
+* genomics-specific helper functions
+
+---
+
+class: middle
+
+**_solves common figure composition problems_**
+
+**_enables push-button regeneration of figure panels_**
+
+**_fits naturally into workflow managers like snakemake or nextflow_**
 
 ---
 
 
-.center2[
+.center3[
 
+https://github.com/mal2017/houR-seminar-sep2021
 
 ]
+
 
 
 
